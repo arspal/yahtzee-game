@@ -1,0 +1,317 @@
+.Yahtzee {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.Yahtzee-Board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 60px 20px 20px;
+  background-color: inherit;
+  transition: background-color 0.4s ease-out;
+}
+
+.Yahtzee-Board--live {
+  background-color: #584872;
+}
+
+.Yahtzee-Board--end .Yahtzee-Die {
+  animation: fade-out 300ms 400ms ease-out forwards;
+}
+
+.Yahtzee-BoardSymbol {
+  opacity: 0;
+}
+
+.Yahtzee-Board--end .Yahtzee-EndScreenText .Yahtzee-BoardSymbol {
+  animation: fade-in 700ms 700ms ease-out forwards;
+}
+
+.Yahtzee-Board--end .Yahtzee-EndScreenScore .Yahtzee-BoardSymbol {
+  animation: fade-in 700ms 1400ms ease-out forwards;
+}
+
+.Yahtzee-Dice {
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  animation: appear 0.6s ease-out forwards;
+}
+
+.Yahtzee-BoardInfo {
+  top: 0;
+  opacity: 0;
+  font-size: 16px;
+  line-height: 1;
+  left: 0;
+  right: 0;
+  width: 175px;
+  text-align: center;
+  margin: 0 auto;
+  color: #e6e9e3;
+  padding: 10px 20px;
+  background-color: #584872;
+  position: absolute;
+  transition: all 0.4s ease-out;
+}
+
+.Yahtzee-RollBtn {
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  line-height: 1;
+  border: none;
+  color: #e6e9e3;
+  background-color: transparent;
+  border: 1px solid #7d6d97;
+  padding: 10px 40px;
+  margin-bottom: 5px;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.4s 0.2s ease-out;
+}
+
+.Yahtzee-RollBtn:hover {
+  background-color: #9382af;
+}
+
+.Yahtzee-RollBtn:active {
+  color: #9382af;
+  background-color: #e6e9e3;
+}
+
+.Yahtzee-RollBtn:disabled {
+  cursor: not-allowed;
+  color: #e6e9e3;
+  background-color: #4d3e66;
+}
+
+.Yahtzee-RollsLeft {
+  opacity: 0;
+  transform: scale(1.2);
+  font-size: 14px;
+  color: #e6e9e3;
+  transition: all 0.4s 0.4s ease-out;
+}
+
+.Yahtzee-EndScreen {
+  position: absolute;
+  padding-top: 60px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 20px; */
+}
+
+.Yahtzee-BoardSymbols {
+  margin: 0;
+  left: 20px;
+  top: 43px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Yahtzee-EndScreenText {
+  margin-bottom: 20px;
+}
+
+.Yahtzee-EndScreenScore {
+  width: 54%;
+}
+
+.Yahtzee-BoardSymbol {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  color: #e6e9e3;
+  font-size: 60px;
+  border: 2px solid #e6e9e3;
+  border-radius: 15px;
+}
+
+.Yahtzee-BoardSymbol--filled {
+  color: #3b304d;
+  border: none;
+  background-color: #e6e9e3;
+}
+
+.Yahtzee-Board--live .Yahtzee-BoardInfo {
+  opacity: 1;
+  transform: translateY(-11px);
+}
+
+.Yahtzee-Board--live .Yahtzee-RollBtn,
+.Yahtzee-Board--live .Yahtzee-RollsLeft {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Yahtzee-Die {
+  outline: none;
+  display: inline-block;
+  width: 88px;
+  height: 88px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 2px #4a3e61;
+  color: #e6e9e3;
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  font-size: 100px;
+  transition: all 0.2s ease-out;
+}
+
+.Yahtzee-Die:disabled {
+  cursor: default;
+}
+
+.Yahtzee-Die:hover {
+  color: white;
+}
+
+.Yahtzee-Die i {
+  display: block;
+  margin-top: -6px;
+}
+
+.Yahtzee-Die--fixed {
+  transform: scale(0.8);
+  opacity: 0.8;
+}
+
+.Yahtzee-Die--fixed.Yahtzee-Die--rolling {
+  transform: scale(1);
+  opacity: 1;
+  animation-name: fixed-roll;
+}
+
+.Yahtzee-Die--rolling {
+  animation: roll 1s ease-out forwards;
+}
+
+.Yahtzee-Scorecard {
+  overflow: hidden;
+}
+
+.Yahtzee-Scorecard ul {
+  color: #584872;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: all 0.6s ease-out;
+  transform: translateY(-100%);
+}
+
+.Yahtzee-Scorecard--open ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Yahtzee-Strat button {
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(247, 241, 241);
+  align-items: center;
+}
+
+.Yahtzee-Strat--used button {
+  color: #858486;
+  background-color: #dcd9df;
+}
+
+/* .Yahtzee-Strat button:disabled {
+  cursor: not-allowed;
+} */
+
+.Yahtzee-Strat:not(.Yahtzee-Strat--used) button:hover {
+  /* color: #e6e9e3; */
+  background-color: #dcd9df;
+}
+
+.Yahtzee-Scorecard em {
+  font-size: 14px;
+}
+
+.Yahtzee-Scorecard h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+@keyframes roll {
+  from {
+    opacity: inherit;
+    transform: scale(1);
+  }
+
+  30% {
+    opacity: 0;
+    transform: rotateZ(0) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateZ(360deg) scale(1);
+  }
+}
+
+@keyframes fixed-roll {
+  30% {
+    opacity: 0;
+    transform: rotateZ(0) scale(0.8);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: rotateZ(360deg) scale(0.8);
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: rotateZ(0) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateZ(360deg) scale(1);
+  }
+}
